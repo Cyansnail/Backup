@@ -1,0 +1,2 @@
+import random
+mn = random.ranit(1, 100)
