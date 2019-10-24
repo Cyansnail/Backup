@@ -4,18 +4,228 @@ import random
 import time
 import os 
 #variables
-wList = ["awkward","bagpipes","banjo","bungler","croquet","crypt"]
+wList = ["awkward"]#,"bagpipes","banjo","bungler","croquet","crypt","fishhook","fjord","gazebo","gypsy","haiku","haphazard","hyphen","ivory","jazzy","jiffy","jinx","jukebox","kayak","kiosk","klutz","rhythmic","rogue","sphinx","squawk","swivel","toady","twelfth","unzip","waxy","wildebeest","yacht","zealous","zigzag","zippy","zombie"]
 pdifficulty = 0
 difficulty = input("Select a difficulty level(Number of failed guesses allowed)(5,10,15): ")
 cList = []
 mList = []
+pgame = ['''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+                                                                          _
+                                                                         / \\
+                                                                         | |
+                                                                         |_|
+                                                                          |
+                                                                        | # |
+                                                                        |###|
+                                                                       =======''','''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                          _
+                                                                         / \\
+                                                                         | |
+                                                                         |_|
+                                                                          |
+                                                                          #
+                                                                          #
+                                                                        | ##|
+                                                                        |###|
+                                                                       =======''','''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                          _
+                                                                         / \\
+                                                                         | |
+                                                                         |_|
+                                                                          |
+                                                                          #
+                                                                          #
+                                                                          #
+                                                                          ##
+                                                                        |###|
+                                                                        |###|
+                                                                       =======''','''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                          _
+                                                                         / \\
+                                                                         | |
+                                                                         |_|
+                                                                          |
+                                                                          #
+                                                                          #
+                                                                          #
+                                                                          #
+                                                                          #
+                                                                          ##
+                                                                        |###|
+                                                                        |###|
+                                                                       =======''','''
+
+
+
+
+
+
+
+
+
+                                                                               
+                                                                        '    '
+                                                                    \\   '    .'    / 
+                                                                 '     "\\  .'" ,    '
+                                                              ' . \\  " \\ / / .:'     .
+                                                              ' .  :' \\ '! |'./,  '
+                                                             ---  --  - ~>o<:- - - _' - 
+                                                                 '   " %.'^ \\, \\' ; .
+                                                                    /  ' / \\ \\' , .  
+                                                                '       /  #  ' "  _ \\
+                                                                    /     |      \\ 
+                                                                               '
+                                                                          #
+                     
+                                                                          #
+                                                                          #
+                                                                          #
+                                                                          ##
+                                                                        |###|
+                                                                        |###|
+                                                                       =======''','''
+
+
+
+
+
+
+
+
+
+                                                                               
+                                                                        '    '
+                                                                    \\   '    .'    / 
+                                                                 '     "\\  .'" ,    '
+                                                              ' . \\  " \\ / / .:'     .
+                                                              ' .  :' \\ '! |'./,  '
+                                                             ---  --  - ~>o<:- - - _' - 
+                                                                 '   " %.'^ \\, \\' ; .
+                                                                    /  ' / \\ \\' , .  
+                                                                '       /  #  ' "  _ \\
+                                                                    /     |      \\ 
+                                                                               '
+                                                                          #
+                     
+                                                                          #
+                                                                          #
+                                                                          #
+                                                                          ##
+                                                                        |###|
+                                                                        |###|
+                                                                       =======''']
 gameover = '''
-  ________        __     __        __  ________         _________               _________   ______
- /               /  \\    | \\      / |  |               /         \\  \\        /  |          |      \\
-/               /    \\   |  \\    /  |  |               |         |   \\      /   |          |______/
-|        ___   /______\\  |   \\  /   |  |___            |         |    \\    /    |___       |   \\
-\\          |  /        \\ |    \\/    |  |               |         |     \\  /     |          |    \\
- \\_________| /          \\|          |  |_______        \\_________/      \\/      |________  |     \\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ________        __      __        __  ________         _________               _________   ______
+ /               /  \\     | \\      / |  |               /         \\  \\        /  |          |      \\
+/               /    \\    |  \\    /  |  |               |         |   \\      /   |          |______/
+|        ___   /______\\   |   \\  /   |  |___            |         |    \\    /    |___       |   \\
+\\          |  /        \\  |    \\/    |  |               |         |     \\  /     |          |    \\
+ \\_________| /          \\ |          |  |_______        \\_________/      \\/      |________  |     \\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -51,7 +261,15 @@ while pdifficulty >= 0:
   print("Misses:" + str(mList))
   print("Tries remaining: " + str(pdifficulty))
   if cList == mWordList:
-    print("You guessed it! The word was " + mWord + "." )
+    if len(mList) == 0:
+      print("You played a perfect game, congradulations.")
+      for i in range(3):
+        for frame in pgame:
+          os.system("cls")
+          print(frame)
+          time.sleep(0.2)
+    else:
+      print("You guessed it! The word was " + mWord + "." )
     break
   elif pdifficulty == 0:
     os.system("cls")
